@@ -84,16 +84,6 @@ public class UsuarioController {
         return p;
     }
 
-    @GetMapping("prods")
-    public List<Producto> getProductos(){
-        return ProductoController.getInstance().getProductos();
-    }
-
-    @GetMapping("string")
-    public String getString(){
-        return ProductoController.getInstance().getString();
-    }
-
     @GetMapping("{username}/carro")
     public List<Producto> getCarrito(@PathVariable("username") String usr){
         Usuario u = findUser(usr);
@@ -107,5 +97,12 @@ public class UsuarioController {
             }
         }
         return null;
+    }
+
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST,
+            reason = "Request ID not found.")
+    @ExceptionHandler(IllegalArgumentException.class)
+    public void badIdExceptionHandler() {
+        // Nothing to do
     }
 }

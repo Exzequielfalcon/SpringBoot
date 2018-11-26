@@ -104,5 +104,10 @@ public class ProductoController {
         return null;
     }
 
-
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST,
+            reason = "Request ID not found.")
+    @ExceptionHandler(IllegalArgumentException.class)
+    public void badIdExceptionHandler() {
+        // Nothing to do
+    }
 }
