@@ -24,6 +24,8 @@ public class ProductoController {
     protected ProductoController() {
         // Exists only to defeat instantiation.
     }
+
+    //Singleton
     public static ProductoController getInstance() {
         if(instance == null) {
             instance = new ProductoController();
@@ -35,7 +37,7 @@ public class ProductoController {
         return "hola";
     }
 
-    @PostMapping
+    @PostMapping("/fill")
     @ApiOperation("Fill products")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "OK", response = Producto.class)})
     public String fillWithProducts() {
@@ -51,15 +53,15 @@ public class ProductoController {
         return "productos agregados";
     }
 
-//    @PostMapping
-//    @ApiOperation("Create new product")
-//    @ApiResponses(value = {@ApiResponse(code = 200, message = "OK", response = Producto.class)})
-//    public Producto newProducto(@RequestBody Producto producto) {
-//        productos.add(producto);
-//        productos.get(id).setId(id);
-//        id++;
-//        return producto;
-//    }
+    @PostMapping
+    @ApiOperation("Create new product")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "OK", response = Producto.class)})
+    public Producto newProducto(@RequestBody Producto producto) {
+        productos.add(producto);
+        productos.get(id).setId(id);
+        id++;
+        return producto;
+    }
 
     @GetMapping
     @ApiOperation("Get a list of products")
@@ -86,6 +88,7 @@ public class ProductoController {
     }
 
     @PutMapping("/{id}")
+    @ApiOperation("Modify a product with id")
     public Producto ModificarProducto(@PathVariable("id") int proid,
                                       @RequestBody Producto producto){
        Producto prod = getProductbyID(proid);
@@ -99,6 +102,7 @@ public class ProductoController {
     }
 
     @DeleteMapping("/{id}")
+    @ApiOperation("Delete with id")
     public Producto DeleteProducto(@PathVariable("id") int proid){
         productos.remove(proid);
         return null;

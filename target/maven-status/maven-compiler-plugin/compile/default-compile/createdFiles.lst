@@ -4,7 +4,5 @@ hello/Model/Producto.class
 hello/Model/Usuario.class
 hello/Model/Carrito.class
 hello/Application.class
-hello/Model/Greeting.class
 hello/SwaggerConfig.class
 hello/Model/UsuarioForm.class
-hello/Controller/GreetingController.class

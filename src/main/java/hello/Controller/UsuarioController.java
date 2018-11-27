@@ -1,9 +1,9 @@
 package hello.Controller;
-
 import hello.Model.Producto;
 import hello.Model.Usuario;
 import hello.Model.Usuario;
 import hello.Model.UsuarioForm;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +21,7 @@ public class UsuarioController {
     private static int id=0;
 
     @PostMapping
+    @ApiOperation("Sing up")
     @ResponseStatus(HttpStatus.CREATED)
     public Usuario newUsuario(@RequestBody UsuarioForm usr) {
         Usuario usuario = new Usuario(usr);
@@ -30,11 +31,13 @@ public class UsuarioController {
         return usuario;
     }
 
+    @ApiOperation("List users")
     @GetMapping
     public List<Usuario> getUsuarios(){
         return new ArrayList<Usuario>(this.usuarios);
     }
 
+    @ApiOperation("Get user by id")
     @GetMapping("/{id}")
     public Usuario getUsuario(@PathVariable("id") int proid) {
         Usuario prod = getProductbyID(proid);
@@ -53,6 +56,7 @@ public class UsuarioController {
         return null;
     }
 
+    @ApiOperation("Modify user")
     @PutMapping("/{id}")
     public Usuario ModificarUsuario(@PathVariable("id") int proid,
                                       @RequestBody Usuario usuario){
@@ -66,13 +70,17 @@ public class UsuarioController {
         throw new IllegalArgumentException();
     }
 
+
     @DeleteMapping("/{id}")
+    @ApiOperation("Delete user by id")
     public String deleteUsuario(@PathVariable("id") int proid){
         usuarios.remove(proid);
         return "Usuario con el id " + proid + " eliminado";
     }
 
+
     @PostMapping("{username}/{id}")
+    @ApiOperation("Add item with id in the shopping cart")
     public Producto addItemToCarro(@PathVariable("id") int proid,
                                    @PathVariable("username") String usr) {
         Usuario u = findUser(usr);
@@ -84,7 +92,21 @@ public class UsuarioController {
         return p;
     }
 
+    @DeleteMapping("{username}/{id}")
+    @ApiOperation("Remove item with id in the shopping cart")
+    public Producto removeItem(@PathVariable("id") int proid,
+                                   @PathVariable("username") String usr) {
+        Usuario u = findUser(usr);
+        Producto p = u.getItem(proid);
+
+        if(u!=null && p!=null){
+            u.removeItem(proid);
+        }
+        return p;
+    }
+
     @GetMapping("{username}/carro")
+    @ApiOperation("Get items from carro")
     public List<Producto> getCarrito(@PathVariable("username") String usr){
         Usuario u = findUser(usr);
         return u.getCarrito().getCarro();

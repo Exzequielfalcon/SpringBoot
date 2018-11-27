@@ -31,6 +31,14 @@ public class Usuario {
         return this.carro;
     }
 
+    public Producto getItem(int id){
+        return this.carro.getItem(id);
+    }
+
+    public void removeItem(int proid){
+        this.carro.removeItem(proid);
+    }
+
     public void addProdtoCarro(Producto p){
         carro.addProducto(p);
     }

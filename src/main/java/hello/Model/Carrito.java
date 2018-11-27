@@ -28,6 +28,14 @@ public class Carrito {
         return aux;
     }
 
+    public Producto getItem(int id){
+        return this.carro.get(id);
+    }
+
+    public void removeItem(int id){
+        this.carro.remove(id);
+    }
+
     public List<Producto> getCarro(){
         return new ArrayList<Producto>(this.carro);
     }
