@@ -1,9 +1,20 @@
 package hello.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Producto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private double precio;
     private String item;
-    private long id;
+
+
+    public Producto(){}
 
     public Producto(String item, double precio) {
         this.item = item;
@@ -30,7 +41,7 @@ public class Producto {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

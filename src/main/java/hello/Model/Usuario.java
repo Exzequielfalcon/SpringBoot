@@ -1,13 +1,19 @@
 package hello.Model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String nick;
     private String pass;
     private Carrito carro = new Carrito();
-    private static int id;
+
 
     public Usuario(String nick) {
         this.nick = nick;
@@ -43,11 +49,11 @@ public class Usuario {
         carro.addProducto(p);
     }
 
-    public static int getId() {
+    public int getId() {
         return id;
     }
 
-    public static void setId(int id) {
-        Usuario.id = id;
+    public void setId(int id) {
+        this.id = id;
     }
 }

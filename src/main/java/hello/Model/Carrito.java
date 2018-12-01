@@ -3,6 +3,9 @@ package hello.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;

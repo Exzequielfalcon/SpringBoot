@@ -1,8 +1,11 @@
 /home/exze/IdeaProjects/SpringSwagger/src/main/java/hello/Controller/UsuarioController.java
 /home/exze/IdeaProjects/SpringSwagger/src/main/java/hello/Model/Carrito.java
 /home/exze/IdeaProjects/SpringSwagger/src/main/java/hello/Model/UsuarioForm.java
+/home/exze/IdeaProjects/SpringSwagger/src/main/java/hello/Service/ProductoService.java
 /home/exze/IdeaProjects/SpringSwagger/src/main/java/hello/Controller/ProductoController.java
 /home/exze/IdeaProjects/SpringSwagger/src/main/java/hello/Model/Usuario.java
 /home/exze/IdeaProjects/SpringSwagger/src/main/java/hello/Application.java
+/home/exze/IdeaProjects/SpringSwagger/src/main/java/hello/Dao/ProductDao.java
 /home/exze/IdeaProjects/SpringSwagger/src/main/java/hello/Model/Producto.java
+/home/exze/IdeaProjects/SpringSwagger/src/main/java/hello/Dao/ProductRepo.java
 /home/exze/IdeaProjects/SpringSwagger/src/main/java/hello/SwaggerConfig.java
