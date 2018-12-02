@@ -1,5 +1,9 @@
+hello/repos/ProductRepo.class
+hello/repos/UsuarioRepo.class
 hello/Application.class
 hello/model/Producto.class
+hello/model/Usuario.class
 hello/SwaggerConfig.class
-hello/repos/ProductRepo.class
 hello/controller/ProductoController.class
+hello/controller/UsuarioController.class
+hello/model/Carrito.class

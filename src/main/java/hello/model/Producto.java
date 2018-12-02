@@ -14,6 +14,7 @@ import java.util.Objects;
 @Data
 @AllArgsConstructor
 public class Producto {
+
     @Id
     @GeneratedValue
     private int id;
