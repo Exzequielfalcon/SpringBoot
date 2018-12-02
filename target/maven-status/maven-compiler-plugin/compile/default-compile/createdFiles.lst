@@ -1,11 +1,5 @@
-hello/Controller/ProductoController.class
-hello/Controller/UsuarioController.class
-hello/Model/Producto.class
-hello/Model/Usuario.class
-hello/Dao/ProductDao.class
-hello/Model/Carrito.class
-hello/Dao/ProductRepo.class
 hello/Application.class
-hello/Service/ProductoService.class
+hello/model/Producto.class
 hello/SwaggerConfig.class
-hello/Model/UsuarioForm.class
+hello/repos/ProductRepo.class
+hello/controller/ProductoController.class
