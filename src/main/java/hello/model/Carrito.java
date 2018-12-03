@@ -3,21 +3,26 @@ package hello.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
+import java.util.List;
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashSet;
+
 
 @Entity
 @Data
 @AllArgsConstructor
 public class Carrito {
 
-    @Id @GeneratedValue
+    @Column(name = "id_carrito")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ElementCollection(targetClass= Producto.class)
-    private List<Producto> carro = new ArrayList<>();
+    @OneToMany
+    @JoinColumn(name ="id_item")
+    private List<Item> carro;
 
     public Carrito(){}
 
@@ -29,12 +34,12 @@ public class Carrito {
         this.id = id;
     }
 
-    public void setCarro(List<Producto> carro) {
-        this.carro = carro;
+    public void addProducto(Item p){
+        carro.add(p);
     }
 
-    public void addProducto(Producto p){
-        carro.add(p);
+    public List<Item> getItems(){
+        return new ArrayList<>(this.carro);
     }
 
     public void removeProducto(int id){
@@ -43,21 +48,13 @@ public class Carrito {
 
     public double getTotal(){
         double aux=0;
-        for(Producto p:carro){
-            aux+=p.getPrecio();
+        for(Item p:carro){
+            aux+=p.getProducto().getPrecio();
         }
         return aux;
     }
 
-    public Producto getItem(int id){
-        return this.carro.get(id);
-    }
-
     public void removeItem(int id){
         this.carro.remove(id);
-    }
-
-    public List<Producto> getCarro(){
-        return new ArrayList<Producto>(this.carro);
     }
 }

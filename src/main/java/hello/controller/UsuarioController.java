@@ -1,5 +1,6 @@
 package hello.controller;
 import hello.model.Usuario;
+import hello.model.UsuarioForm;
 import hello.repos.UsuarioRepo;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,9 @@ public class UsuarioController {
     @PostMapping
     @ApiOperation("Sing up")
     @ResponseStatus(HttpStatus.CREATED)
-    public Usuario newUsuario(@RequestBody Usuario usr) {
-        return users.save(usr);
+    public Usuario newUsuario(@RequestBody UsuarioForm user) {
+        Usuario p= new Usuario(user.getNick(),user.getPass());
+        return users.save(p);
     }
 
     @ApiOperation("List users")

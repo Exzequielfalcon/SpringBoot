@@ -3,22 +3,26 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Table(name = "Usuario")
 @Entity
 @Data
 @AllArgsConstructor
 public class Usuario {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario", unique = true)
     private int id;
+
+    @Column(name="nick")
     private String nick;
+
+    @Column(name="pass")
     private String pass;
 
-    @Autowired
+    @OneToOne
     private Carrito carro;
 
     public Usuario(){}
@@ -26,7 +30,6 @@ public class Usuario {
     public Usuario(String nick, String pass) {
         this.nick = nick;
         this.pass = pass;
-
     }
 
     public String getNick() {
@@ -41,15 +44,11 @@ public class Usuario {
         return this.carro;
     }
 
-    public Producto getItem(int id){
-        return this.carro.getItem(id);
-    }
-
     public void removeItem(int proid){
         this.carro.removeItem(proid);
     }
 
-    public void addProdtoCarro(Producto p){
+    public void addProdtoCarro(Item p){
         carro.addProducto(p);
     }
 

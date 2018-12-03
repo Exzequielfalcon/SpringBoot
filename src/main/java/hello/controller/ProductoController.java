@@ -49,8 +49,7 @@ public class ProductoController {
 
     @PutMapping("/{id}")
     @ApiOperation("Modify a product with id")
-    public Producto ModificarProducto(@PathVariable("id") int proid,
-                                      @RequestBody Producto producto){
+    public Producto ModificarProducto(@PathVariable("id") int proid, @RequestBody Producto producto){
         producto.setId(proid);
        return products.save(producto);
     }
