@@ -3,9 +3,11 @@ package hello.services;
 import hello.model.Usuario;
 import hello.repos.UsuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UsuarioService {
 
     @Autowired
