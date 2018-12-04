@@ -26,7 +26,7 @@ public class Producto {
 
     public Producto(){}
 
-    public Producto( String item, double precio){
+    public Producto(String item, double precio){
         this.precio=precio;
         this.item=item;
     }

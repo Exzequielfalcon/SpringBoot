@@ -1,11 +1,13 @@
 hello/model/Producto.class
 hello/SwaggerConfig.class
 hello/controller/CarritoController.class
+hello/services/UsuarioService.class
 hello/model/UsuarioForm.class
 hello/repos/CarritoRepo.class
 hello/repos/ProductRepo.class
 hello/repos/UsuarioRepo.class
 hello/Application.class
+hello/services/ProductoService.class
 hello/model/Usuario.class
 hello/controller/ProductoController.class
 hello/model/Item.class

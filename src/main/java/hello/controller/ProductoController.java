@@ -3,6 +3,7 @@ package hello.controller;
 
 import hello.model.Producto;
 import hello.repos.ProductRepo;
+import hello.services.ProductoService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -16,8 +17,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/productos")
 public class ProductoController {
+
     @Autowired
     private ProductRepo products;
+
+    @Autowired
+    private ProductoService prods;
 
     @PostMapping("/fill")
     @ApiOperation("Fill products")
@@ -31,35 +36,32 @@ public class ProductoController {
 
     @PostMapping
     @ApiOperation("Create new product")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "OK", response = Producto.class)})
+//    @ApiResponses(value = {@ApiResponse(code = 200, message = "OK", response = Producto.class)})
     public Producto newProducto(@RequestBody Producto producto) {
-        return products.save(producto);
+        return prods.postProduct(producto);
     }
 
     @GetMapping
     @ApiOperation("Get a list of products")
     public List<Producto> getProductos(){
-        return products.findAll();
+        return prods.findAll();
     }
 
     @GetMapping("/{id}")
     public Producto getProducto(@PathVariable("id") int proid) {
-        return products.findById(proid).get();
+        return prods.getProductById(proid);
     }
 
     @PutMapping("/{id}")
     @ApiOperation("Modify a product with id")
     public Producto ModificarProducto(@PathVariable("id") int proid, @RequestBody Producto producto){
-        producto.setId(proid);
-       return products.save(producto);
+       return prods.putProducto(proid,producto);
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation("Delete with id")
     public Producto DeleteProducto(@PathVariable("id") int proid){
-        Producto p = products.findById(proid).get();
-        products.deleteById(proid);
-        return p;
+        return prods.deleteProducto(proid);
     }
 
 }

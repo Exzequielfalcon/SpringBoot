@@ -23,6 +23,7 @@ public class Usuario {
     private String pass;
 
     @OneToOne
+    @JoinColumn(name = "id_carrito")
     private Carrito carro;
 
     public Usuario(){}

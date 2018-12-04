@@ -13,13 +13,20 @@ public class Item {
     @Column(name = "id_item", unique = true)
     private int id;
 
+    @Column(name ="cantidad")
     private int cantidad;
 
     @OneToOne
     @JoinColumn(name ="id_producto")
     private Producto producto;
 
-    @Column(name = "ItemId")
+    public Item(int cantidad, Producto p) {
+        this.cantidad = cantidad;
+        this.producto = p;
+    }
+
+    public Item(){}
+
     public int getCantidad() {
         return cantidad;
     }
@@ -36,10 +43,5 @@ public class Item {
         this.producto = p;
     }
 
-    public Item(int cantidad, Producto p) {
-        this.cantidad = cantidad;
-        this.producto = p;
-    }
 
-    public Item(){}
 }

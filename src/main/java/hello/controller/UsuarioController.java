@@ -2,6 +2,7 @@ package hello.controller;
 import hello.model.Usuario;
 import hello.model.UsuarioForm;
 import hello.repos.UsuarioRepo;
+import hello.services.UsuarioService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,26 +18,27 @@ import java.util.List;
 public class UsuarioController {
 
     @Autowired
-    private UsuarioRepo users;
+    private UsuarioService users;
+
+
 
     @PostMapping
     @ApiOperation("Sing up")
     @ResponseStatus(HttpStatus.CREATED)
-    public Usuario newUsuario(@RequestBody UsuarioForm user) {
-        Usuario p= new Usuario(user.getNick(),user.getPass());
-        return users.save(p);
+    public Usuario newUsuario(@RequestBody Usuario user) {
+        return users.addNewUsuario(user);
     }
 
     @ApiOperation("List users")
     @GetMapping
     public List<Usuario> getUsuarios(){
-        return users.findAll();
+        return users.getUsuarios();
     }
 
     @ApiOperation("Get user by id")
     @GetMapping("/{id}")
     public Usuario getUsuario(@PathVariable("id") int proid) {
-        Usuario user = users.findById(proid).get();
+        Usuario user = users.getUsuarioById(proid);
         if(user!=null){
             return user;
         }
@@ -47,8 +49,9 @@ public class UsuarioController {
     @PutMapping("/{id}")
     public Usuario ModificarUsuario(@PathVariable("id") int proid,
                                       @RequestBody Usuario usuario){
-        usuario.setId(proid);
-        users.save(usuario);
+        if(users.existsById(proid)){
+            return users.editUsuario(proid, usuario);
+        }
         throw new IllegalArgumentException();
     }
 
@@ -56,9 +59,7 @@ public class UsuarioController {
     @DeleteMapping("/{id}")
     @ApiOperation("Delete user by id")
     public Usuario deleteUsuario(@PathVariable("id") int proid){
-        Usuario user = users.findById(proid).get();
-        users.deleteById(proid);
-        return user;
+        return users.deleteUsuario(proid);
     }
 
 

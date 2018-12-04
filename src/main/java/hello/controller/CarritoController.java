@@ -3,6 +3,7 @@ package hello.controller;
 import hello.model.Item;
 import hello.model.Producto;
 import hello.model.Usuario;
+import hello.repos.CarritoRepo;
 import hello.repos.ProductRepo;
 import hello.repos.UsuarioRepo;
 import io.swagger.annotations.ApiOperation;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@RequestMapping("/productos")
+@RequestMapping("/carrito")
 public class CarritoController {
 
     @Autowired
@@ -20,20 +21,23 @@ public class CarritoController {
     @Autowired
     private ProductRepo prods;
 
-    @PostMapping("{username}/{ItemId}")
-    @ApiOperation("Add item with id in the shopping cart")
-    public Producto addItemToCarro(@PathVariable("ItemId") int proid,
-                                   @PathVariable("username") String usr) {
-        if (prods.existsById(proid)){
-            Producto p = prods.findById(proid).get();
-            Item i = new Item(1,p);
-            user.findByNick(usr).addProdtoCarro(i);
-            return p;
-        } else {
-            return new Producto("false",0);
-        }
+    @Autowired
+    private CarritoRepo carri;
 
-    }
+//    @PostMapping("{username}/{ItemId}")
+//    @ApiOperation("Add item with id in the shopping cart")
+//    public Producto addItemToCarro(@PathVariable("ItemId") int proid,
+//                                   @PathVariable("username") int usr) {
+//        if (prods.existsById(proid)){
+//            Producto p = prods.findById(proid).get();
+//            Item i = new Item(1,p);
+//            carri.save(i);
+//            user.findById(usr).get().addProdtoCarro(i);
+//            return p;
+//        } else {
+//            return new Producto("false",0);
+//        }
+//    }
 
 //    @DeleteMapping("{username}/{id}")
 //    @ApiOperation("Remove item with id in the shopping cart")
