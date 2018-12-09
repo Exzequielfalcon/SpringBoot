@@ -1,6 +1,8 @@
 package hello.services;
 
+import hello.model.Carrito;
 import hello.model.Usuario;
+import hello.model.UsuarioForm;
 import hello.repos.UsuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,9 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepo users;
+
+    @Autowired
+    private CarritoService carri;
 
     public Usuario getUsuarioById(int id) {
         Usuario Usuario = users.findById(id).get();
@@ -25,10 +30,14 @@ public class UsuarioService {
         return users.findAll();
     }
 
-    public Usuario addNewUsuario(Usuario usuario) {
-
-        return users.save(usuario);
+    public Usuario addNewUsuario(UsuarioForm usuario) {
+        Carrito c =carri.addCarrito(new Carrito());
+        Usuario usr = new Usuario(usuario);
+        usr.setCarro(c);
+        users.save(usr);
+        return usr;
     }
+
     public Usuario deleteUsuario(int id) {
         if(users.existsById(id))  {
             Usuario usuario = users.findById(id).get();
@@ -38,8 +47,6 @@ public class UsuarioService {
         else{
             throw new IllegalArgumentException();
         }
-
-
     }
 
 
@@ -52,6 +59,10 @@ public class UsuarioService {
             throw new IllegalArgumentException();
         }
 
+    }
+
+    public Usuario getUsuarioByNick(String nombre){
+        return users.findByNick(nombre);
     }
 
     public boolean existsById(int user){

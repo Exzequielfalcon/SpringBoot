@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("api/usuarios")
 public class UsuarioController {
 
     @Autowired
@@ -25,8 +25,9 @@ public class UsuarioController {
     @PostMapping
     @ApiOperation("Sing up")
     @ResponseStatus(HttpStatus.CREATED)
-    public Usuario newUsuario(@RequestBody Usuario user) {
-        return users.addNewUsuario(user);
+    public String newUsuario(@RequestBody UsuarioForm user) {
+        users.addNewUsuario(user);
+        return "UsuarioDTO agregado";
     }
 
     @ApiOperation("List users")
@@ -65,8 +66,8 @@ public class UsuarioController {
 
 
 
-//    public Usuario findUser(String nombre){
-//        for(Usuario u:usuarios){
+//    public UsuarioDTO findUser(String nombre){
+//        for(UsuarioDTO u:usuarios){
 //            if(u.getNick().equals(nombre)){
 //                return u;
 //            }

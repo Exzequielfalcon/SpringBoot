@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 
-@Table(name = "Usuario")
+@Table(name = "UsuarioDTO")
 @Entity
 @Data
 @AllArgsConstructor
@@ -16,7 +16,7 @@ public class Usuario {
     @Column(name = "id_usuario", unique = true)
     private int id;
 
-    @Column(name="nick")
+    @Column(name="nick", unique = true)
     private String nick;
 
     @Column(name="pass")
@@ -26,7 +26,13 @@ public class Usuario {
     @JoinColumn(name = "id_carrito")
     private Carrito carro;
 
-    public Usuario(){}
+    public Usuario(){
+    }
+
+    public Usuario(UsuarioForm u){
+        this.nick = u.getNick();
+        this.pass = u.getPass();
+    }
 
     public Usuario(String nick, String pass) {
         this.nick = nick;
@@ -43,6 +49,10 @@ public class Usuario {
 
     public Carrito getCarrito(){
         return this.carro;
+    }
+
+    public void setCarro(Carrito c){
+        this.carro=c;
     }
 
     public void removeItem(int proid){

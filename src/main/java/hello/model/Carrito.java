@@ -24,6 +24,10 @@ public class Carrito {
     @JoinColumn(name ="id_item")
     private List<Item> carro;
 
+    @OneToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario id_user;
+
     public Carrito(){}
 
     public int getId() {
@@ -54,7 +58,14 @@ public class Carrito {
         return aux;
     }
 
-    public void removeItem(int id){
-        this.carro.remove(id);
+    public Producto removeItem(int id){
+        for(int i=0;i<carro.size();i++){
+            if(carro.get(i).getProducto().getId()==id){
+                Producto p = carro.get(i).getProducto();
+                carro.remove(i);
+                return p;
+            }
+        }
+        return null;
     }
 }
