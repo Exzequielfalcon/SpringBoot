@@ -26,9 +26,29 @@ public class Carrito {
 
     @OneToOne
     @JoinColumn(name = "id_usuario")
-    private Usuario id_user;
+    private Usuario user;
 
     public Carrito(){}
+
+    public Carrito(Usuario user){
+        this.user=user;
+    }
+
+    public List<Item> getCarro() {
+        return carro;
+    }
+
+    public void setCarro(List<Item> carro) {
+        this.carro = carro;
+    }
+
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
 
     public int getId() {
         return id;

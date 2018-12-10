@@ -25,6 +25,14 @@ public class Item {
         this.producto = p;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Item(){}
 
     public int getCantidad() {

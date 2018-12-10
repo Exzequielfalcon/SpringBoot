@@ -5,17 +5,11 @@ public class UserDto {
     private String nick;
     private String pass;
 
+    public UserDto(){}
+
     public UserDto(String nick, String pass) {
         this.nick = nick;
         this.pass = pass;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNick() {

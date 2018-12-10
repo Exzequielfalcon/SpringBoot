@@ -2,7 +2,6 @@ package hello.controller;
 
 
 import hello.model.Producto;
-import hello.repos.ProductRepo;
 import hello.services.ProductoService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

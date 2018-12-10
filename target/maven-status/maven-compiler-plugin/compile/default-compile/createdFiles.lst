@@ -7,7 +7,6 @@ hello/model/Producto.class
 hello/controller/CarritoController.class
 hello/DTOs/UserDto.class
 hello/services/UsuarioService.class
-hello/model/UsuarioForm.class
 hello/repos/CarritoRepo.class
 hello/repos/ProductRepo.class
 hello/repos/UsuarioRepo.class

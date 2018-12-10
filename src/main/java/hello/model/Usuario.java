@@ -4,8 +4,9 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Table(name = "UsuarioDTO")
+@Table(name = "Usuario")
 @Entity
 @Data
 @AllArgsConstructor
@@ -26,13 +27,11 @@ public class Usuario {
     @JoinColumn(name = "id_carrito")
     private Carrito carro;
 
-    public Usuario(){
+    public Carrito getCarro() {
+        return carro;
     }
 
-    public Usuario(UsuarioForm u){
-        this.nick = u.getNick();
-        this.pass = u.getPass();
-    }
+    public Usuario(){}
 
     public Usuario(String nick, String pass) {
         this.nick = nick;
@@ -49,6 +48,10 @@ public class Usuario {
 
     public Carrito getCarrito(){
         return this.carro;
+    }
+
+    public List<Item> getItems(){
+        return this.carro.getItems();
     }
 
     public void setCarro(Carrito c){

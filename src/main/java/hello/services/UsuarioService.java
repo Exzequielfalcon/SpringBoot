@@ -2,7 +2,6 @@ package hello.services;
 
 import hello.model.Carrito;
 import hello.model.Usuario;
-import hello.model.UsuarioForm;
 import hello.repos.UsuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,12 +29,15 @@ public class UsuarioService {
         return users.findAll();
     }
 
-    public Usuario addNewUsuario(UsuarioForm usuario) {
-        Carrito c =carri.addCarrito(new Carrito());
-        Usuario usr = new Usuario(usuario);
-        usr.setCarro(c);
-        users.save(usr);
-        return usr;
+    public Usuario addNewUsuario(Usuario usuario) {
+        if(getUsuarioByNick(usuario.getNick())!=null) {
+            throw new RuntimeException("User already exists");
+        } else {
+            Carrito c = carri.addCarrito(new Carrito());
+            usuario.setCarro(c);
+            users.save(usuario);
+            return usuario;
+        }
     }
 
     public Usuario deleteUsuario(int id) {
