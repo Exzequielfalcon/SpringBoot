@@ -1,5 +1,5 @@
  Read Hello:
-curl -i -H "Content-Type: application/json" -X GET localhost:8080/hello
+curl -i -H "Content-Type: application/json" -X GET localhost:8080/shop
 
 # Add new pledge
 curl -i -H "Content-Type: application/json" -X POST -d '{
