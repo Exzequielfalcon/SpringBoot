@@ -20,4 +20,11 @@ public class GlobalExceptionHandler {
         // Nothing to repos
     }
 
+    @ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE,
+            reason = "Not acceptable values")
+    @ExceptionHandler(NullPointerException.class)
+    public void NullExceptionHandler() {
+        // Nothing to repos
+    }
+
 }

@@ -34,6 +34,7 @@ public class UsuarioController {
 
     @ApiOperation("List users")
     @GetMapping
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public List<UserDto> getUsuarios(){
         return convertToDto(users.getUsuarios());
     }
@@ -66,7 +67,7 @@ public class UsuarioController {
     }
 
     private UserDto convertToDto(Usuario user) {
-        return  modelMapper.map(user, UserDto.class);
+        return modelMapper.map(user, UserDto.class);
 
     }
     private List<UserDto> convertToDto(List<Usuario> users) {
