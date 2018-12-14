@@ -1,11 +1,13 @@
 package shop.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
 @Data
+@AllArgsConstructor
 public class Item {
 
     @Id
@@ -24,32 +26,5 @@ public class Item {
         this.cantidad = cantidad;
         this.producto = p;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Item(){}
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto p) {
-        this.producto = p;
-    }
-
 
 }

@@ -1,12 +1,9 @@
 package shop.model;
-
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import java.util.List;
 import javax.persistence.*;
 import java.util.ArrayList;
-
 
 @Entity
 @Data
@@ -26,34 +23,6 @@ public class Carrito {
     private Usuario user;
 
     public Carrito(){}
-
-    public Carrito(Usuario user){
-        this.user=user;
-    }
-
-    public List<Item> getCarro() {
-        return carro;
-    }
-
-    public void setCarro(List<Item> carro) {
-        this.carro = carro;
-    }
-
-    public Usuario getUser() {
-        return user;
-    }
-
-    public void setUser(Usuario user) {
-        this.user = user;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public void addProducto(Item p){
         carro.add(p);

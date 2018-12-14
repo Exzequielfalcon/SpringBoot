@@ -1,6 +1,7 @@
 package shop.controller;
 
 
+import org.springframework.http.HttpStatus;
 import shop.model.Producto;
 import shop.services.ProductoService;
 import io.swagger.annotations.ApiOperation;
@@ -38,7 +39,7 @@ public class ProductoController {
 
     @PostMapping
     @ApiOperation("Create new product")
-//    @ApiResponses(value = {@ApiResponse(code = 200, message = "OK", response = Producto.class)})
+    @ResponseStatus(HttpStatus.CREATED)
     public ProductDto newProducto(@RequestBody ProductDto producto) {
         Producto newProduct=prods.postProduct(convertToEntity(producto));
         return convertToDto(newProduct);

@@ -1,11 +1,9 @@
 package shop.services;
-
 import shop.model.Carrito;
 import shop.model.Usuario;
 import shop.repos.UsuarioRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -64,7 +62,9 @@ public class UsuarioService {
     }
 
     public Usuario getUsuarioByNick(String nombre){
-        return users.findByNick(nombre);
+        if(users.findByNick(nombre)!=null){
+            return users.findByNick(nombre);
+        } else throw new RuntimeException("Nombre no encontrado");
     }
 
     public boolean existsById(int user){
